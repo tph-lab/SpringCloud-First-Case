@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <groupId>com.yc.springcloud812</groupId>
+        <artifactId>microservice</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>microservice-api</artifactId>
+    <name>microservice-api</name>    <!-- 模块名 -->
+    <!--当版本号与父版本号一样时，可以省略-->
+    <version>0.0.1-SNAPSHOT</version>
+
+
+    <dependencies>
+        <dependency>
+            <groupId>org.mybatis.spring.boot</groupId>
+            <artifactId>mybatis-spring-boot-starter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>tk.mybatis</groupId>
+            <artifactId>mapper-spring-boot-starter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
+            <version>2.9.10</version>
+        </dependency>
+
+
+        <!--data-jpa-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+
+    </dependencies>
+
+
+</project>

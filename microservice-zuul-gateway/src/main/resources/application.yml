@@ -1,0 +1,42 @@
+server:
+  port: 9501
+
+eureka:
+  client: # 客户端进行Eureka注册的配置
+    service-url:
+      defaultZone: http://admin:a@eureka1:7001/eureka,http://admin:a@eureka2:7002/eureka,http://admin:a@eureka3:7003/eureka
+    register-with-eureka: true
+  instance:
+    instance-id: microservice-zuul-gateway
+    prefer-ip-address: true       #以IP地址注册到服务中心
+    lease-renewal-interval-in-seconds: 2    #设置心跳间隔时间
+    lease-expiration-duration-in-seconds: 5  # 租约超时时间间隔
+
+spring:
+  application:
+    name:  microservice-zuul-gateway
+  security:
+    user:
+      name: admin
+      password: a
+
+
+zuul:
+  routes:    #路由配置
+    # microservice-provider-user:  /user-proxy/**
+    #在配置文件中出现的user其实是一个逻辑名称，这个名称主要作用是将path与serviceId绑定在一起
+    user1:      #基于erueka的              可实现负载均衡
+      path: /user1-proxy/**
+      serviceId: microservice-provider-user
+    user2:        #传统的路由方式
+      path: /user2-proxy/**
+      url: http://localhost:5555/         #
+    product:    #加入产品路由器
+      path: /product-proxy/**
+      serviceId: microservice-provider
+      sensitiveHeaders:
+    ignored-services:
+      #microservice-provider-user  #修改application.yml文件，忽略掉用户服务的名称
+      "*"     #问题是如果这种要隐藏的服务很多的话，都要配置，太麻烦了，怎么办？
+  prefix: /yc-api    #公共前缀
+
